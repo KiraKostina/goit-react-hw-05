@@ -31,7 +31,7 @@ export default function HomePage() {
           <h2>Trending today</h2>
           {isLoading && <Loader /> }
           {isError && <ErrorMessage />}
-          <MovieList movies={trendingMovies} />
+          {trendingMovies.length > 0 && <MovieList movies={trendingMovies} />}
     </div>
   );
 }
