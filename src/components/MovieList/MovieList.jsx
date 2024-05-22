@@ -1,4 +1,4 @@
-export default function MovieList({ movies = []}) {
+export default function MovieList({movies}) {
     return (
         <ul>
             {movies.map((movie) => (
