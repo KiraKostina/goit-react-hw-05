@@ -41,3 +41,28 @@ export const getMovies = async (searchWord, currentPage) => {
 
 return response.data;
 };
+
+export const getCastById = async (movie_id) => {
+  const response = await axios.get(`/3/movie/${movie_id}/credits`, {
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${TOKEN_KEY}`,
+    },
+  });
+    
+  return response.data;
+};
+
+
+
+
+export const getReviewsById = async (movie_id) => {
+  const response = await axios.get(`/3/movie/${movie_id}/reviews`, {
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${TOKEN_KEY}`,
+    },
+  });
+    
+  return response.data;
+};
