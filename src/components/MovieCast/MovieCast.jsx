@@ -1,6 +1,4 @@
-
-
-    import { getCastById } from '../../movies-api';
+import { getCastById } from '../../movies-api';
 // import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
@@ -10,21 +8,19 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function MovieCast()  {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
-//   const [isLoading, setIsLoading] = useState(false);
+  const [cast, setCast] = useState(null);
   const [isError, setIsError] = useState(false);
   const location = useLocation();
-  const goBack = useRef(location?.state ?? '/movies');
+  // const goBack = useRef(location?.state ?? '/movies');
 
   useEffect(() => {
     if (!movieId) return;
 
     async function fetchCastById() {
       try {
-        // setIsLoading(true);
         setIsError(false);
         const data = await getCastById(movieId);
-        setMovie(data);
+        setCast(data.cast);
       } catch (error) {
         setIsError(true);
       } 
@@ -32,13 +28,27 @@ export default function MovieCast()  {
     fetchCastById();
   }, [movieId]);
 
+  if (isError) {
+    return <ErrorMessage />;
+  }
+
+  if (!cast) {
+    return <Loader />;
+  }
 
     return (
         <div>
         
-      {isError && <ErrorMessage />}
-            {/* {isLoading && <Loader />} */}
-            <h3>Hello</h3>
+        {isError && <ErrorMessage />}
+        <ul>
+          {cast.map(actor => (
+            <li key={actor.id}>
+              <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} />
+              <h3>{actor.name}</h3>
+              <p>Character: {actor.character}</p>
+            </li>
+          ))}
+        </ul>
         </div>
     )
  }
