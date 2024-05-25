@@ -11,7 +11,7 @@ export default function MovieCast()  {
   const [cast, setCast] = useState(null);
   const [isError, setIsError] = useState(false);
   const location = useLocation();
-  // const goBack = useRef(location?.state ?? '/movies');
+  const goBack = useRef(location?.state ?? '/movies');
 
   useEffect(() => {
     if (!movieId) return;
@@ -43,7 +43,7 @@ export default function MovieCast()  {
         <ul>
           {cast.map(actor => (
             <li key={actor.id}>
-              <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} />
+              <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} width={150} />
               <h3>{actor.name}</h3>
               <p>Character: {actor.character}</p>
             </li>

@@ -14,7 +14,7 @@ export default function MoviesPage() {
   
  
   useEffect(() => {
-      const query = searchParams.get('movie') ?? '';
+      const query = searchParams.get('query') ?? '';
     if (query.trim() === "") { return };
     async function fetchMovies() {
       try {
@@ -33,7 +33,7 @@ export default function MoviesPage() {
     }, [searchParams]);
   
   const handleSubmit = async value => {
-    setSearchParams({ movie: value });
+    setSearchParams({ query: value });
   };
 
   return (
