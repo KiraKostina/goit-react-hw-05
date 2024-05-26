@@ -3,6 +3,7 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import css from './MovieCast.module.css';
 
 export default function MovieCast() {
   const { movieId } = useParams();
@@ -40,23 +41,26 @@ export default function MovieCast() {
   return (
     <div>
       {isError && <ErrorMessage />}
-      <ul>
+      <div  >
+  
+      <ul className={css.actor_list}>
         {cast.map(actor => (
-          <li key={actor.id}>
-            <img
+          <li className={css.actor_card} key={actor.id}>
+            <img className={css.actor_img}
               src={
                 actor.profile_path
                   ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
                   : defaultImg
               }
-              width={150}
+              width={160}
               alt="actor"
             />
-            <h3>{actor.name}</h3>
-            <p>Character: {actor.character}</p>
+            <p className={css.actor_name}>{actor.name}</p>
+            <p className={css.actor_character}>Character: {actor.character}</p>
           </li>
         ))}
-      </ul>
+        </ul>
+        </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  Link,
+  // Link,
   NavLink,
   Outlet,
   useLocation,
@@ -9,6 +9,7 @@ import {
 import { getMovieById } from '../../movies-api';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
+import css from './MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -39,18 +40,19 @@ export default function MovieDetailsPage() {
   const defaultImg =
     'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
 
-  
-  const getYear = (releaseDate) => {
+  const getYear = releaseDate => {
     return releaseDate ? releaseDate.split('-')[0] : 'Unknown Year';
   };
 
   return (
     <div>
-      <Link to={goBack.current}>Go Back</Link>
+      <NavLink className={css.back_link} to={goBack.current}>
+        Go Back
+      </NavLink>
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
       {movie && (
-        <div key={movie.id}>
+        <div className={css.film_container} key={movie.id}>
           <img
             src={
               movie.poster_path
@@ -61,22 +63,25 @@ export default function MovieDetailsPage() {
             alt="poster"
           />
 
-          <h2>{movie.title}({getYear(movie.release_date)})</h2>
-          <p>User Score: {movie.vote_average}</p>
-          <h3>Overview</h3>
-          <p>{movie.overview}</p>
-          <h3>Genres</h3>
-          <p>
-            {movie.genres.map(genre => (
-              <span key={genre.id}>{genre.name} </span>
-            ))}
-          </p>
+          <div className={css.info_part}>
+            <h2>
+              {movie.title}({getYear(movie.release_date)})
+            </h2>
+            <p>User Score: {movie.vote_average}</p>
+            <h3>Overview</h3>
+            <p>{movie.overview}</p>
+            <h3>Genres</h3>
+            <p>
+              {movie.genres.map(genre => (
+                <span key={genre.id}>{genre.name} </span>
+              ))}
+            </p>
+          </div>
         </div>
       )}
 
-
-<h3>Additional Information</h3>
-      <ul>
+      <h3 className={css.add_title}>Additional Information</h3>
+      <ul className={css.addition}>
         <li>
           <NavLink to="cast">Cast</NavLink>
         </li>

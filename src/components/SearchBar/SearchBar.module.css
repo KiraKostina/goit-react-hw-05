@@ -12,11 +12,12 @@
 }
 
 .search_field {
-  width: 450px;
+  max-width: 250px;
   height: 40px;
   margin-top: 20px;
   margin-bottom: 20px;
-  padding-left: 56px;
+  margin-right: 8px;
+  padding-left: 16px;
   position: relative;
   outline: none;
   border: none;
@@ -28,16 +29,18 @@
   padding-left: 0px;
 } */
 
-/* .searchBtn {
-  position: absolute;
-  top: 36px;
+.searchBtn {
+  /* position: absolute;
+  top: 36px; */
   outline: none;
   border: none;
-  background-color: transparent;
+  background-color: aquamarine;
+  margin-top: 20px;
+  height: 42px;
   cursor: pointer;
 }
 
-.searchBtn:hover,
+/* .searchBtn:hover,
 .searchBtn:focus {
   outline: none;
   border: none;

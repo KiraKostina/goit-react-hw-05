@@ -3,6 +3,7 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import css from './MovieReviews.module.css';
 
 export default function MovieReviews() {
   const { movieId } = useParams();
@@ -41,7 +42,7 @@ export default function MovieReviews() {
   return (
     <div>
       {isError && <ErrorMessage />}
-      <ul>
+      <ul className={css.reviews_list}>
         {reviews.map(review => (
           <li key={review.id}>
             <h3>Author: {review.author}</h3>
