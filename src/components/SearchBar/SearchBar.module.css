@@ -25,13 +25,7 @@
   font-size: 16px;
 }
 
-/* .search_field::placeholder {
-  padding-left: 0px;
-} */
-
 .searchBtn {
-  /* position: absolute;
-  top: 36px; */
   outline: none;
   border: none;
   background-color: aquamarine;
@@ -40,9 +34,9 @@
   cursor: pointer;
 }
 
-/* .searchBtn:hover,
+.searchBtn:hover,
 .searchBtn:focus {
   outline: none;
   border: none;
   border-color: transparent;
-} */
+}

@@ -1,6 +1,5 @@
 import { Field, Form, Formik } from 'formik';
 import { toast, Toaster } from 'react-hot-toast';
-// import { GoSearch } from 'react-icons/go';
 import css from './SearchBar.module.css';
 
 export default function SearchBar({ onSearch }) {

@@ -1,11 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  // Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from '../../movies-api';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';

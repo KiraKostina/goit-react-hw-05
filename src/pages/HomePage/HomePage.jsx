@@ -5,7 +5,6 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 import css from './HomePage.module.css';
 
-
 export default function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,14 +13,14 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchTrendMovies() {
       try {
-          setIsLoading(true);
-          setIsError(false);
-          const data = await getTrendingMovies();
-          setTrendingMovies(data.results);
+        setIsLoading(true);
+        setIsError(false);
+        const data = await getTrendingMovies();
+        setTrendingMovies(data.results);
       } catch {
-          setIsError(true);
+        setIsError(true);
       } finally {
-          setIsLoading(false);
+        setIsLoading(false);
       }
     }
 
@@ -31,8 +30,8 @@ export default function HomePage() {
   return (
     <div>
       <h2 className={css.home_title}>Trending today</h2>
-          {isLoading && <Loader /> }
-          {isError && <ErrorMessage />}
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
       {trendingMovies.length > 0 && <MovieList movies={trendingMovies} />}
     </div>
   );
