@@ -1,12 +1,10 @@
 import { getCastById } from '../../movies-api';
-// import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
-import {  useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 
-
-export default function MovieCast()  {
+export default function MovieCast() {
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
   const [isError, setIsError] = useState(false);
@@ -23,7 +21,7 @@ export default function MovieCast()  {
         setCast(data.cast);
       } catch (error) {
         setIsError(true);
-      } 
+      }
     }
     fetchCastById();
   }, [movieId]);
@@ -36,19 +34,29 @@ export default function MovieCast()  {
     return <Loader />;
   }
 
-    return (
-        <div>
-        
-        {isError && <ErrorMessage />}
-        <ul>
-          {cast.map(actor => (
-            <li key={actor.id}>
-              <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} width={150} />
-              <h3>{actor.name}</h3>
-              <p>Character: {actor.character}</p>
-            </li>
-          ))}
-        </ul>
-        </div>
-    )
- }
+  const defaultImg =
+    'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
+  
+  return (
+    <div>
+      {isError && <ErrorMessage />}
+      <ul>
+        {cast.map(actor => (
+          <li key={actor.id}>
+            <img
+              src={
+                actor.profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+                  : defaultImg
+              }
+              width={150}
+              alt="actor"
+            />
+            <h3>{actor.name}</h3>
+            <p>Character: {actor.character}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

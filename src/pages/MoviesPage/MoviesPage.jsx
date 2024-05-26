@@ -1,9 +1,8 @@
-import MovieList from "../../components/MovieList/MovieList";
-
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import { getMovies } from '../../movies-api';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import MovieList from "../../components/MovieList/MovieList";
 import Loader from "../../components/Loader/Loader";
 
 export default function MoviesPage() {

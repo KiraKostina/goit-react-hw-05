@@ -7,7 +7,6 @@ import {
   useParams,
 } from 'react-router-dom';
 import { getMovieById } from '../../movies-api';
-// import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 
@@ -37,8 +36,13 @@ export default function MovieDetailsPage() {
     fetchMovieById();
   }, [movieId]);
 
-  // const defaultImg =
-  //   '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>';
+  const defaultImg =
+    'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
+
+  
+  const getYear = (releaseDate) => {
+    return releaseDate ? releaseDate.split('-')[0] : 'Unknown Year';
+  };
 
   return (
     <div>
@@ -48,23 +52,17 @@ export default function MovieDetailsPage() {
       {movie && (
         <div key={movie.id}>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt={movie.title}
-            width={250}
-          />
-
-          {/* <img
             src={
-              
               movie.poster_path
-                ? `<https://image.tmdb.org/t/p/w500/${movie.poster_path}>`
-                : 'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg'
+                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                : defaultImg
             }
             width={250}
-            alt={movie.title}
-          /> */}
+            alt="poster"
+          />
 
-          <h2>{movie.title}</h2>
+          <h2>{movie.title}({getYear(movie.release_date)})</h2>
+          <p>User Score: {movie.vote_average}</p>
           <h3>Overview</h3>
           <p>{movie.overview}</p>
           <h3>Genres</h3>
@@ -76,6 +74,8 @@ export default function MovieDetailsPage() {
         </div>
       )}
 
+
+<h3>Additional Information</h3>
       <ul>
         <li>
           <NavLink to="cast">Cast</NavLink>

@@ -15,19 +15,19 @@ export const getTrendingMovies = async () => {
   return response.data;
 };
 
-export const getMovieById = async (movie_id) => {
+export const getMovieById = async movie_id => {
   const response = await axios.get(`/3/movie/${movie_id}`, {
     headers: {
       Accept: 'application/json',
       Authorization: `Bearer ${TOKEN_KEY}`,
     },
   });
-    
+
   return response.data;
 };
 
-export const getMovies = async (searchWord, currentPage) => { 
-  const response = await axios.get('/3/search/movie', { 
+export const getMovies = async (searchWord, currentPage) => {
+  const response = await axios.get('/3/search/movie', {
     headers: {
       accept: 'application/json',
       Authorization: `Bearer ${TOKEN_KEY}`,
@@ -36,33 +36,29 @@ export const getMovies = async (searchWord, currentPage) => {
       query: searchWord,
       // page: currentPage,
     },
-
   });
 
-return response.data;
+  return response.data;
 };
 
-export const getCastById = async (movie_id) => {
+export const getCastById = async movie_id => {
   const response = await axios.get(`/3/movie/${movie_id}/credits`, {
     headers: {
       Accept: 'application/json',
       Authorization: `Bearer ${TOKEN_KEY}`,
     },
   });
-    
+
   return response.data;
 };
 
-
-
-
-export const getReviewsById = async (movie_id) => {
+export const getReviewsById = async movie_id => {
   const response = await axios.get(`/3/movie/${movie_id}/reviews`, {
     headers: {
       Accept: 'application/json',
       Authorization: `Bearer ${TOKEN_KEY}`,
     },
   });
-    
+
   return response.data;
 };
